@@ -1,0 +1,173 @@
+body {
+	background-color: #F5AB35; /* Lightning Yellow - I Like It */
+	color: #232323;
+}
+
+.container {
+	max-width: 100rem;
+	padding-bottom: 7.5rem;
+	/* padding-top: 7.5rem; */
+	text-align: center;
+	letter-spacing: 3px;
+}
+
+.title {
+	/* font-weight: 700; */
+	letter-spacing: 3px;
+}
+
+.name {
+	font-size: 5em;
+	font-weight: 900;
+	background-color: #232323;
+	border-radius: 5px;
+	color: #F5AB35;
+	padding: 6px;
+}
+
+#main-deets {
+	padding-top: 3rem;
+}
+
+.thumbnail {
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#nameField, #emailField, #messageField {
+	border-color: #232323;
+}
+
+#button {
+	background-color: #232323;
+	color: #F5AB35;
+	border-color: #F5AB35;
+	border-radius: 5px;
+	letter-spacing: 3px;
+}
+
+#button:hover {
+	background-color: #F5AB35;
+	border-color: #232323;
+	color: #232323;
+}
+
+.button-large {
+	background-color: #232323;
+	color: #F5AB35;
+	border-color: #F5AB35;
+	border-radius: 5px;
+	font-size: 2rem;
+  height: 6.5rem;
+  line-height: 6.5rem;
+	padding: 1 3rem;
+	font-weight: 500;
+	letter-spacing: 3px;
+}
+
+.button-large:hover {
+	background-color: #F5AB35;
+	border-color: #232323;
+	color: #232323;
+}
+
+
+::placeholder {
+	color: #232323;
+	opacity: 0.5;
+}
+
+/* a little bit too much black with the black HR tags - maybe another time */
+/* hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #232323;
+    margin: 1em 0;
+    padding: 0; 
+} */
+
+svg {
+	max-width: 75px;
+}
+
+.skill-icons {
+	font-size: 75px;
+}
+
+.iconz {
+	margin-left: 10px;
+	color: #232323;
+}
+
+.iconz:hover {
+	/* border: 1px solid #232323; */
+	color: rgb(163, 95, 30);
+}
+
+.dev-icon {
+	margin-left: 4px;
+}
+
+.hearticon {
+	color: red;
+}
+
+.arrows {
+	padding-top: 5px;
+}
+
+.project-title {
+	border: 1px solid #232323;
+	border-radius: 5px;
+	background-color: #232323;
+	color: #F5AB35;
+	padding: 6px;
+	letter-spacing: 3px;
+}
+
+.project-img {
+	width: 310px;
+	height: 230px;
+	text-align: center;
+	border-style: groove;
+	border-color: rgb(238, 222, 191);
+	border-radius: 5px;
+}
+
+.project-descrip {
+	background-color: #232323;
+	border-radius: 5px;
+	color: #F5AB35;
+	padding: 6px;
+}
+
+.project-tech {
+	border: solid 1px #232323;
+	border-radius: 5px;
+	padding: 6px;
+}
+
+.education-title {
+	border: 1px solid #232323;
+	border-radius: 5px;
+	background-color: #232323;
+	color: #F5AB35;
+	padding: 6px;
+	letter-spacing: 3px;
+}
+
+.education-description {
+	background-color: #232323;
+	border-radius: 5px;
+	color: #F5AB35;
+	padding: 6px;
+}
+
+.education-tech {
+	border: solid 1px #232323;
+	border-radius: 5px;
+	padding: 6px;
+}
