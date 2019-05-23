@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<style>
+    div.padded {
+      padding-top: 0px;
+      padding-right: 100px;
+      padding-bottom: 0.25in;
+      padding-left: 100px;
+    }
+  </style>
+<title>Randy Fan  |  CS 184</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+</head>
+<body>
+<br />
+<h1 align="middle">Assignment 3: PathTracer</h1>
+    <h2 align="middle">Randy Fan</h2>
+
+    <div class="padded">
+        <p>In this project, I added additional features to my ray tracer. Specifically, I added mirror and glass materials, microfacet materials, environment light, and depth of light. These features add complexity
+to the type of materials rendered and add flexibility to how the scene can be illuminated. </p>
+
+    <h2 align="middle">Part 1: Mirror and Glass Materials</h2>
+<p>
+In this part, I Implemented mirror and glass materials. Mirror materials rely on the reflect equation while glass materials rely on the reflect and refract equations.  Reflection involves
+reflecting the incoming ray over the surface normal, while refraction involves a few additional steps of checking for total internal reflection and using Snell's law (air and glass).
+For glass materials, I used  Schlick's approximation for my coin-flip probability, which determines whether sample a reflected or refracted ray. This is because glassy materials have both reflection and refraction.
+
+</p>
+
+        <p>Below are six images of scene CBspheres.dae rendered with max_ray_depth set to 0, 1, 2, 3, 4, 5, and 100. I used 64 samples per pixel and 4 samples per light.
+ For each image, I will point out the new multibounce effects and discuss how the max_ray_depth relates to the particular effects that appear.
+        </p>
+
+        <div align="center">
+            <table style="width=100%">
+                <tr>
+                    <td align="middle">
+                    <img src= "images/part1/part1depth0.png" width="480px" />
+                    <figcaption align="middle">Max_ray_depth = 0. This image depicts zero bounce illimuniation straight from the light to the camera.</figcaption>
+                </tr>
+                <tr>
+                    <td align="middle">
+                    <img src= "images/part1/part1depth1.png" width="480px" />
+                    <figcaption align="middle">Max_ray_depth = 1.  At this max ray depth, we only see the light from the direct lighting (the light source on the ceiling).</figcaption>
+                </tr>
+                <tr>
+                    <td align="middle">
+                    <img src= "images/part1/part1depth2.png" width="480px" />
+                    <figcaption align="middle">Max_ray_depth = 2. Now, the ray gets reflected (bounces) on the mirror and glass sphere, and the room is brightened due to global illumination.
+Notice the glass sphere is still dark; this is because we cannot see the light that refracts inside the glass sphere since the ray is terminated before it is able to exit the sphere.</figcaption>
+                </tr>
+                <tr>
+                    <td align="middle">
+                    <img src= "images/part1/part1depth3.png" width="480px" />
+                    <figcaption align="middle">Max_ray_depth = 3. With a max_ray_depth of 3, the spheres are beginning to look more “realistic”. The glass sphere now depicts the light refracted inside it. Notice, however, the mirror balls’ reflection depicts a
+dark ball (the glass ball), but the actual glass ball is no longer dark in this rendering. It is interesting that the reflections on the spheres are a max_ray_depth behind the current max_ray_depth (e.g. the current reflected scene on the
+ mirror ball is the scene from max_ray_depth = 2). Also, the glass ball’s shadow is not correctly illuminated because no light seems to refract out of the glass sphere.</figcaption>
+                </tr>
+                <tr>
+                    <td align="middle">
+                    <img src= "images/part1/part1depth4.png" width="480px" />
+                    <figcaption align="middle">Max_ray_depth = 4. Finally, we see the light refract out of the glass ball and illuminate its shadow! This is because we had to wait for the light ray to
+intersect the glass sphere, refract inside the sphere, and finally for it to refract out of the sphere. Notice also the reflected scene on the mirror ball is more realistic now, although the shadow of
+the glass ball is dark in the mirror ball’s reflected scene. </figcaption>
+                </tr>
+                <tr>
+                    <td align="middle">
+                    <img src= "images/part1/part1depth5.png" width="480px" />
+                    <figcaption align="middle">Max_ray_depth = 5. The result of this rendering is similar to max_ray_depth = 4. Some noticeable differences include the now illuminated shadow in the mirror
+ ball’s reflection of the glass ball and the small patch of light reflected on the blue wall. These differences are a result of the additional bounce of light between the spheres and floor. Specifically,
+ I think the small patch of light on the blue wall is a result of the light reflection up from the ground (back onto the glass sphere) and then reflecting onto the blue wall.</figcaption>
+                </tr>
+                <tr>
+                    <td align="middle">
+                    <img src= "images/part1/part1depth100.png" width="480px" />
+                    <figcaption align="middle">Max_ray_depth = 100. From max_ray_depth = 5 onwards, the rendered scenes become quite consistent with one another (in fact, the image rendered using max_ray_depth = 5 is quite similar to the one with a max_ray_depth = 100).
+Notice the scenes do become slightly brighter as the max_ray_depth increases; this is simply because of the increase in the number of light bounces. </figcaption>
+                </tr>
+            </table>
+        </div>
+
+  <h2 align="middle">Part 2: Microfacet Material</h2>
+<p>
+In this part, I implemented microfacet materials, which rely on on the fresnel term, shadowing-masking term, normal distribution function, macro surface normal, and the half vector.
+The specs were very clear for this part, so I implemented microfacet function components based on the equations provided in the specs.
+I also implemented importance sampling for this part. I did this by sampling pdf_theta and pdf_phi (equations for pdf_theta and pdf_phi were provided in the specs). To sample them, I used the inversion method
+to get theta and phi. Then, I reflected w_o relative to the bisecting vector to get the sampled direction. Finally, I followed equations provided in the specs to calculate the pdf of
+ sampling the bisecting vector with respect to a solid angle.
+
+</p>
+<p>
+  Below is a sequence of 4 images of scene CBdragon_microfacet_au.dae rendered with alpha set to .005, .05, .25, and 0.5. I used 128 samples per pixel, 1 sample per light, and 5 bounces.
+</p>
+<div align="center">
+    <table style="width=100%">
+        <tr>
+            <td align="middle">
+            <img src= "images/part2alpha/part2alpha005.png" width="480px" />
+            <figcaption align="middle">With an alpha of .005, the rendered image has a lot of noise and the dragon appears shiny and smooth.</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part2alpha/part2alpha05.png" width="480px" />
+            <figcaption align="middle">Alpha = .05. the rendered image has slightly less noise and the dragon is less glossy (although it still appears metallic).</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part2alpha/part2alpha25.png" width="480px" />
+            <figcaption align="middle">With an alpha of = 0.25, the dragon is starting to look a lot rougher/less glossy and there is almost no noise in the environment.
+ As the surface becomes rougher, light gets scattered in more directions so the object appears diffuse.</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+                <img src= "images/part2alpha/part2alpha5.png" width="480px" />
+            <figcaption align="middle">With an alpha = 0.5, the dragon has a diffuse look and there is basically no noise in the environment.</figcaption>
+        </tr>
+    </table>
+</div>
+<p>
+  Below are two images of CBbunny_microfacet_cu.dae using cosine hemisphere sampling and importance sampling. I used 64 samples per pixel, 1 samples per light, and a max ray depth of 5.
+</p>
+
+<div align="center">
+  <table style="width=100%">
+      <tr>
+          <td align="middle">
+          <img src= "images/part2bunnyimpohemi/part2bunnyhemi.png" width="480px" />
+          <figcaption align="middle">This image is rendered using cosine hemisphere sampling.</figcaption>
+      </tr>
+      <tr>
+          <td align="middle">
+          <img src= "images/part2bunnyimpohemi/part2bunnyimpo.png" width="480px" />
+          <figcaption align="middle">This image is rendered using importance sampling.</figcaption>
+      </tr>
+  </table>
+</div>
+<p>
+As you can see, when using importance sampling, there is significantly less noise on the bunny and the bunny actually looks like copper. This is because importance sampling efficiently concentrates
+samples on light sources while cosine hemisphere sampling is less efficient and “wastes” a lot of samples by randomly spreading out the samples.
+</p>
+<p>
+Below is an image of a conductor material of my choice – Manganese. Using wavelengths of 614nm red, 549 nm green, 466nm blue and an alpha value of 0.1. I used 128 samples per pixel, 1 sample per light, and 5 bounces.
+The (eta, k) pairs are (2.5066, 3.5306), (2.39, 3.33), (2.17, 3.04) respectively.
+</p>
+
+<div align="center">
+  <table style="width=100%">
+    <tr>
+        <td align="middle">
+        <img src= "images/part2myown/part2man.png" width="480px" />
+        <figcaption align="middle"> Manganese dragon</figcaption>
+    </tr>
+  </table>
+</div>
+  <h2 align="middle">Part 3: Environment Light</h2>
+
+<p>
+  Environment lighting provides a faraway light source (like the sun) that surrounds the scene. This provides excellent realism because light can affect all
+  surfaces in the scene (for example, this is clearly evident in outdoor scenes such as a field).
+ Basically, a light ray can bounce around a scene and eventually find a light source now (without environment light, the ray may just return black).
+To implement environment lighting, I mapped the 2d environment texture to a 3d sphere and implemented uniform and importance sampling. For uniform sampling, I simply picked a random direction on the sphere.
+For importance sampling,
+I had to compute the pdf, compute the marginal distribution, and compute the conditional distributions.
+I used the equations provided to get the marginal distribution; to sample from the marginal distribution,  I got the cdf of the marginal distribution and stored it in marginal_y. For conditional distributions,
+ I used Bayes' rule, taking advantage of the marginal_y I calculated in the prior step. I stored the cond distributions in conds_y. At the end, I used the inversion method
+to find the pixel in the 2D environment texture to sample.
+</p>
+<p>
+Below is a screenshot of my probability_debug.png file for the field.exr file I am using.
+</p>
+<div align="center">
+  <table style="width=100%">
+    <tr>
+        <td align="middle">
+        <img src= "images/part3/probability_debug.png" width="480px" />
+        <figcaption align="middle"> The (eta, k) pairs are (2.5066, 3.5306), (2.39, 3.33), (2.17, 3.04) respectively.</figcaption>
+    </tr>
+</table>
+</div>
+<p>
+Below are two pictures of bunny_unlit.dae scene in a field (field.exr). One with uniform sampling and one with importance sampling.
+</p>
+
+<div align="center">
+    <table style="width=100%">
+        <tr>
+            <td align="middle">
+            <img src= "images/part3/part3notcopperuni.png" width="480px" />
+            <figcaption align="middle">Uniform sampling using 4 samples per pixel and 64 samples per light </figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part3/part3notcopperimo.png" width="480px" />
+            <figcaption align="middle">Importance sampling using 4 samples per pixel and 64 samples per light in each</figcaption>
+        </tr>
+    </table>
+</div>
+<p>
+Both renderings above look similar. However, if looked closely, there are appears to be slightly more dots (noise) on the bunny model rendered using uniform sampling.
+This is simply because uniform sampling takes longer to converge since it is sampling directions randomly (not biased towards light sources).
+</p>
+<p>
+Below are two pictures of bunny_microfacet_cu_unlit.dae in a field (field.exr) – one with uniform sampling and one with importance sampling. I used 4 samples per pixel,
+256 samples per light, and max ray depth equal to 5 (the relatively large number of samples per light makes the below images quite similar).
+</p>
+
+<div align="center">
+    <table style="width=100%">
+        <tr>
+            <td align="middle">
+            <img src= "images/part3/part3specsUNI.png" width="480px" />
+            <figcaption align="middle">Uniform sampling using 4 samples per pixel and 256 samples per light </figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part3/part3specsIMPO.png" width="480px" />
+            <figcaption align="middle">Importance sampling using 4 samples per pixel and 256 samples per light in each</figcaption>
+        </tr>
+    </table>
+</div>
+<p>
+Uniform sampling is noisier than importance sampling in this part. If looked closely, importance sampling provides a smoother highlight region on the bunny model than uniform sampling.
+In other words, there is slightly more noise (dots) in the bright regions of the bunny model for uniform sampling.
+</p>
+  <h2 align="middle">Part 4: Depth of Field</h2>
+
+<p>
+
+  In a pinhole model, light rays converge at the focal point and ideally one ray of light reaches each point on the other side. Using this pinhole model, we can’t change its focal distance and field of view;
+in other words, we can't choose to focus on a specific area in the scene.
+Also, we can’t change the pinhole model's aperture, so we can’t alter the blurriness of the scene.
+  Thin lens, on the other hand, provides more flexibility on its the focal distance and aperture. We can adjust the focus distance for thin lens, allowing us to focus on certain areas in the scene. We can also change the lens' aperture, allowing us to fine tune the blurriness of the scene.
+ A pinhole model can be thought of as a camera aperture described as a point.
+I implemented thin lens in this part by sampling from the thin lens using the given pLens equation, calculating the pFocus to get a ray that goes from the pLens to the pFocus. Finally, I normalized the ray direction and converted
+the camera coordinates to world.
+
+</p>
+<p>
+Below is a "focus stack" where I focus at 4 visibly different depths through a scene. The lens radius is set at 0.08 and remains constant in the focus stack.
+I used 64 samples per pixel, 4 samples per light, and a max ray depth of 5.
+</p>
+<div align="center">
+    <table style="width=100%">
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4mouth.png" width="480px" />
+            <figcaption align="middle">Dragon's mouth: focal distance of 0.52</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4belly.png" width="480px" />
+            <figcaption align="middle"> Dragon's belly: focal distance of 0.73</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4frontfoot.png" width="480px" />
+            <figcaption align="middle"> Dragon's front foot: focal distance of 0.9</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4tail.png" width="480px" />
+            <figcaption align="middle"> Dragon's tail: focal distance of 1.13</figcaption>
+        </tr>
+    </table>
+</div>
+<p>
+Below is	a sequence of 4 pictures with visibly different aperture sizes, all focused on the dragon's mouth (focal distance of 0.52).
+I used 64 samples per pixel, 4 samples per light, and a max ray depth of 5.
+</p>
+<div align="center">
+    <table style="width=100%">
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4aperture0.png" width="480px" />
+            <figcaption align="middle">Lens radius of 0</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4aperture003.png" width="480px" />
+            <figcaption align="middle"> Lens radius of 0.03</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4aperture015.png" width="480px" />
+            <figcaption align="middle"> Lens radius of 0.15</figcaption>
+        </tr>
+        <tr>
+            <td align="middle">
+            <img src= "images/part4/part4aperture08.png" width="480px" />
+            <figcaption align="middle"> Lens radius of 0.8</figcaption>
+        </tr>
+    </table>
+</div>
+
+</div>
+</div>
+</body>
+</html>
