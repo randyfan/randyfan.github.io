@@ -1,5 +1,5 @@
 body {
-	background-color: #F5AB35; /* Lightning Yellow - I Like It */
+	background-color: #e0e0e0; /* Lightning Yellow - I Like It */
 	color: #232323;
 }
 
@@ -19,9 +19,9 @@ body {
 .name {
 	font-size: 5em;
 	font-weight: 900;
-	background-color: #232323;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
 	border-radius: 5px;
-	color: #F5AB35;
+	color: #e0e0e0;
 	padding: 6px;
 }
 
@@ -41,23 +41,25 @@ body {
 }
 
 #button {
-	background-color: #232323;
-	color: #F5AB35;
-	border-color: #F5AB35;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);;
+	color: #e0e0e0;
+	border-color: #e0e0e0;
 	border-radius: 5px;
 	letter-spacing: 3px;
 }
 
 #button:hover {
-	background-color: #F5AB35;
+	background-color: #e0e0e0;
 	border-color: #232323;
 	color: #232323;
 }
 
+
+
 .button-large {
-	background-color: #232323;
-	color: #F5AB35;
-	border-color: #F5AB35;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);;
+	color: #e0e0e0;
+	border-color: #e0e0e0;
 	border-radius: 5px;
 	font-size: 2rem;
   height: 6.5rem;
@@ -68,7 +70,7 @@ body {
 }
 
 .button-large:hover {
-	background-color: #F5AB35;
+	background-color: #e0e0e0;
 	border-color: #232323;
 	color: #232323;
 }
@@ -86,7 +88,7 @@ body {
     border: 0;
     border-top: 1px solid #232323;
     margin: 1em 0;
-    padding: 0; 
+    padding: 0;
 } */
 
 svg {
@@ -122,8 +124,8 @@ svg {
 .project-title {
 	border: 1px solid #232323;
 	border-radius: 5px;
-	background-color: #232323;
-	color: #F5AB35;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);
+	color: #e0e0e0;
 	padding: 6px;
 	letter-spacing: 3px;
 }
@@ -138,9 +140,8 @@ svg {
 }
 
 .project-descrip {
-	background-color: #232323;
+	border: solid 1px #232323;
 	border-radius: 5px;
-	color: #F5AB35;
 	padding: 6px;
 }
 
@@ -153,16 +154,16 @@ svg {
 .education-title {
 	border: 1px solid #232323;
 	border-radius: 5px;
-	background-color: #232323;
-	color: #F5AB35;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);;
+	color: #e0e0e0;
 	padding: 6px;
 	letter-spacing: 3px;
 }
 
 .education-description {
-	background-color: #232323;
+	background-image: linear-gradient(-20deg, #2b5876 0%, #4e4376 100%);;
 	border-radius: 5px;
-	color: #F5AB35;
+	color: #e0e0e0;
 	padding: 6px;
 }
 
