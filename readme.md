@@ -4,6 +4,6 @@ This is a minimal portfolio site about myself that I made using the [Milligram.i
 
 I created this site because I wanted to experiment & get practice with other frameworks outside of Bootstrap.
 
-http://www.gyasiknunez.com/
+randyfan.com
 
-Site deployed with [Netlify](https://www.netlify.com/)
+
