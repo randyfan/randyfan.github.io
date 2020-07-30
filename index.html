@@ -29,17 +29,12 @@
 				</div>
 				<div class="row">
 					<div class="column">
-						<h3 class="title">Software Developer <i class="fas fa-code"></i> <i class="fab fa-python"></i> <i class="fas fa-code-branch"></i> </h3>
+						<h3 class="title"> Developer <i class="fas fa-code"></i> <i class="fab fa-python"></i> <i class="fas fa-code-branch"></i> </h3>
 					</div>
 				</div>
 				<div class="row">
 					<div class="column">
-						<h3 class="title">EECS Researcher <i class="fas fa-search"></i> <i class="fas fa-file-alt"></i> <i class="fas fa-shapes"></i></h3>
-					</div>
-				</div>
-				<div class="row">
-					<div class="column">
-						<h3 class="title"> Finance, Strategy, and Product Management <i class="fas fa-search"></i> <i class="fas fa-file-alt"></i> <i class="fas fa-shapes"></i></h3>
+						<h3 class="title"> Researcher <i class="fas fa-search"></i> <i class="fas fa-file-alt"></i> <i class="fas fa-shapes"></i></h3>
 					</div>
 				</div>
 			</section>
@@ -50,12 +45,9 @@
 
 				<h3 class="title">About</h3>
 				<p style="line-height: 2em;">
-		 		I graduated from Berkeley with a degree in Computer Science  (magna cum laude), and will be pursuing a MS in EECS at Berkeley, advised by Professor Carlo Séquin.
+		 		Hi, I recently graduated from Berkeley with a degree in Computer Science and will be pursuing a MS in EECS at Berkeley, advised by Professor Carlo Séquin.
 
-I worked at Microsoft as a FRP Intern for the past 2 summers, and am currently a Gaming PM in Xbox.
-I have a keen interest in physics, visual computing, finance, machine learning, and many more topics. I have dabbled in each of these topics (with projects to prove it) and have developed
-expertise in a few.
-Generally speaking, I'm passionate about solving complex technical problems using both a business and technical lens.  If you would like to chat about opportunities, please contact me at randyfan@berkeley.edu.
+I am currently a Gaming PM intern at Microsoft, and previously interned in the FRP program for the past 2 summers. I leverage my interdiscplinary background to offer unique and effective solutions to technical problems. If you would like to chat about opportunities, please contact me at randyfan@berkeley.edu.
 				</p>
 				<hr>
 				<h3 class="title">Education</h3>
@@ -67,7 +59,7 @@ Generally speaking, I'm passionate about solving complex technical problems usin
 						</h4>
 
 						<h6 class="title education-location">Class of 2021</h6>
-						<p class="education-tech"><em> MS in EECS, research focus in computational geometry and 3D modelling</em></p>
+						<p class="education-tech"><em> Master's in EECS with research focus in computational geometry and 3D modeling; advised by Professor Carlo Séquin </em></p>
 						<hr>
 					</div>
 					<div class="column">
@@ -77,13 +69,13 @@ Generally speaking, I'm passionate about solving complex technical problems usin
 						</h4>
 
 						<h6 class="title education-location">Class of 2020</h6>
-						<p class="education-tech"><em> Bachelor's in CS; GPA: 3.84; Dean's List; Upsilon Pi Epsilon (CS Honors Society for top Berkeley CS students)</em></p>
+						<p class="education-tech"><em> Bachelor's in CS; GPA: 3.84; Magna Cum Laude; Dean's List; Upsilon Pi Epsilon (CS Honors Society for top Berkeley CS students)</em></p>
 						<hr>
 					</div>
 					<div class="column">
-						<h4 class="title education-title">Plano West Senior High School</h4>
+						<h4 class="title education-title">Plano West Senior HS</h4>
 						<h6 class="title education-location">Class of 2016</h6>
-						<p class="education-tech"><em>Class Rank: 3 out of 1400; 21 AP courses; SAT: 2320 (800 Math, 790 Reading); ACT: 36 SAT II - Math II: 800; National AP Scholar</em></p>
+						<p class="education-tech"><em>Class Rank: 3 out of 1400; 21 AP courses; SAT: 2320 (800 Math, 790 Reading); ACT: 36; SAT Math II: 800; National AP Scholar</em></p>
 
 						<hr>
 					</div>
@@ -98,44 +90,80 @@ Generally speaking, I'm passionate about solving complex technical problems usin
 			<!-- PROJECTS -->
 			<section class="container" id="projects">
 				<h3 class="title">Projects</h3>
-				<p>Some applications I've created while at school or in my free time.</p>
+				<p>Some applications I've created while at school or in my free time. A few dozen not listed. </p>
 				<div class="row">
+					<div class="column">
+						<h4 class="project-title">Pathtracer</h4>
+						<a href="http://randyfan.com/Pathtracer/" target="_blank"><img class="project-img img-responsive" src="images/pathtracer.png" alt="CRM"></a>
+						<p class="project-descrip">A physically-based renderer using a pathtracing algorithm. Incorporates ray-scene intersection, acceleration structures, physically based lighting,
+			complex materials, environment lighting, and depth of field effects.  </p>
+					</div>
+					<div class="column">
+						<h4 class="project-title">Color in Nature Inspired Design </h4>
+						<a href="./ColorinNatureInspiredDesign.pdf" target="_blank"><img class="project-img img-responsive" src="images/ColorinNatureInspiredDesign.png" alt="IronSnake"></a>
+						<p class="project-descrip"> Combining smart color schemes with cellular automaton and reaction-diffusion system. </p>
+					</div>
+
+					<div class="column">
+						<h4 class="project-title">MeshEdit</h4>
+						<a href="http://randyfan.com/MeshEdit/" target="_blank"><img class="project-img img-responsive" src="images/meshedit.png" alt="Grubify.co"></a>
+						<p class="project-descrip">A mesh editor that allows you to load and edit basic COLLADA mesh files. Uses de Casteljau's algorithm to build Bezier curves/surfaces  and  half-edge
+data structure to manipulate meshes. Also includes an implementation of loop subdivision.</p>
+
+					</div>
+				</div>
+				<div class="row"> <!--New Row-->
+
+					<div class="column">
+						<h4 class="project-title">Real-time Cloth Simulator</h4>
+						<a href="http://randyfan.com/ClothSimulator/" target="_blank"><img class="project-img img-responsive" src="images/cloth.png" alt="KeyCode"></a>
+						<p class="project-descrip">A real-time cloth simulator using a mass and spring based system. Simulates cloth movement and calculates forces using numerical integration.
+	Handles collisions with other objects (e.g. sphere) and self-collisions to prevent cloth clipping.</p>
+					</div>
 					<div class="column">
 						<h4 class="project-title">erth.io</h4>
 						<a href="http://erth.io/" target="_blank"><img class="project-img img-responsive" src="images/erth.png" alt="DooDoo"></a>
 						<p class="project-descrip">A multiplayer battle game in the ever-growing list of .io games. This time you control a colored circle and can choose a class (archer, magician, or warrior; each has its own unique attack and power)</p>
+					</div>
+					<div class="column">
+						<h4 class="project-title">Colorizing Photos using Alignment</h4>
+						<a href="https://inst.eecs.berkeley.edu/~cs194-26/sp20/upload/files/proj1/cs194-26-aaw/" target="_blank"><img class="project-img img-responsive" src="images/colorizing.jpg" alt="StarWars"></a>
+						<p class="project-descrip"> Align digitized glass plates to form colored versions of those images. There were two alignment approaches we were required to implement: single-scale and image pyramid. </p>
+					</div>
 
+				</div>
+				<div class="row"> <!--New Row-->
+					<div class="column">
+						<h4 class="project-title">Filter and Frequencies</h4>
+						<a href="https://inst.eecs.berkeley.edu/~cs194-26/sp20/upload/files/proj2/cs194-26-aaw/" target="_blank"><img class="project-img img-responsive" src="images/filter.jpg" alt="StarWars"></a>
+						<p class="project-descrip"> Implemented various derivative filters to perform useful tasks such as image straightening. Applied filters to help sharpen images, create hybrid images, and implemented image blending operations using Gaussian and Laplacian stacks. </p>
 					</div>
 					<div class="column">
-						<h4 class="project-title">MeshEdit</h4>
-						<a href="https://cal-cs184-student.github.io/p2-meshedit-randyfan/" target="_blank"><img class="project-img img-responsive" src="images/meshedit.png" alt="Grubify.co"></a>
-						<p class="project-descrip">A mesh editor that allows you to load and edit basic COLLADA mesh files. Uses de Casteljau's algorithm to build Bezier curves/surfaces  and  half-edge
-data structure to manipulate meshes. Also includes an implementation of loop subdivision.</p>
+						<h4 class="project-title">Face Morphing</h4>
+						<a href="https://inst.eecs.berkeley.edu/~cs194-26/sp20/upload/files/proj3/cs194-26-aaw/" target="_blank"><img class="project-img img-responsive" src="images/morph.jpg" alt="KeyCode"></a>
+						<p class="project-descrip">Face morphing using triangulation and affine transformations to output new, interpolated faces (or extrapolated for caricatures). </p>
 					</div>
-					<div class="column">
-						<h4 class="project-title">Pathtracer</h4>
-						<a href="https://cal-cs184-student.github.io/p3-1-pathtracer-randyfan/" target="_blank"><img class="project-img img-responsive" src="images/pathtracer.png" alt="CRM"></a>
-						<p class="project-descrip">A physically-based renderer using a pathtracing algorithm. Incorporates ray-scene intersection, acceleration structures, physically based lighting,
-complex materials, environment lighting, and depth of field effects.  </p>
+				    <div class="column">
+							<h4 class="project-title">Autostitching Mosaics </h4>
+							<a href="https://inst.eecs.berkeley.edu/~cs194-26/sp20/upload/files/proj5B/cs194-26-aaw/" target="_blank"><img class="project-img img-responsive" src="images/mosaic.png" alt="IronSnake"></a>
+							<p class="project-descrip"> Recovered homographies, warped images (with 2 rectified images as examples), and blended my own images into a mosaic.</p>
 					</div>
 				</div>
 				<div class="row"> <!--New Row-->
 					<div class="column">
-						<h4 class="project-title">Machine Learning</h4>
-						<a href="https://inst.eecs.berkeley.edu/~cs188/sp19/project5.html#Introduction" target="_blank"><img class="project-img img-responsive" src="images/cs188proj.png" alt="StarWars"></a>
-						<p class="project-descrip"> A machine learning tool using perceptrons and neural networks to classify digits and identify the language of a text. </p>
+						<h4 class="project-title">Seam Carving + Gradient Fusion </h4>
+						<a href="https://inst.eecs.berkeley.edu/~cs194-26/sp20/upload/files/proj2/cs194-26-aaw/" target="_blank"><img class="project-img img-responsive" src="images/seam.jpg" alt="StarWars"></a>
+						<p class="project-descrip"> Implemented verticla and horizontal seam carving as well as gradient domain fusion, performing poisson blending. </p>
 					</div>
 					<div class="column">
-						<h4 class="project-title">Cloth Simulator</h4>
-						<a href="https://cal-cs184-student.github.io/p4-clothsim-randyfan/" target="_blank"><img class="project-img img-responsive" src="images/cloth.png" alt="KeyCode"></a>
-						<p class="project-descrip">A real-time cloth simulator using a mass and spring based system. Simulates cloth movement and calculates forces using numerical integration.
-	Handles collisions with other objects (e.g. sphere) and self-collisions to prevent cloth clipping.</p>
+						<h4 class="project-title">Neural Coreference Resolution </h4>
+											<a href="", target="_blank"><img class="project-img img-responsive" src="images/coref.png" alt="DooDoo"></a>
+						<p class="project-descrip"> Built a PyTorch implementation of a neural coreference system using a mention-ranking model with word embeddings and mention distance features.  </p>
 					</div>
 						<div class="column">
-							<h4 class="project-title">Rasterizer</h4>
-							<a href="https://cal-cs184-student.github.io/p1-rasterizer-randyfan/" target="_blank"><img class="project-img img-responsive" src="images/rasterizer.png" alt="IronSnake"></a>
-							<p class="project-descrip">A simple rasterizer that includes features such as supersampling, hierarchical transforms, and texture mapping with antialiasing.
-						It is a fully functional vector graphics renderer that can take in modified SVG (Scalable Vector Graphics) files.</p>
+							<h4 class="project-title"> Transition-based Dependency Parser </h4>
+					<a href="", target="_blank"><img class="project-img img-responsive" src="images/transition.png" alt="DooDoo"></a>
+							<p class="project-descrip"> Checked projectivity of dependency trees used, created an oracle method to convert trees to configuration and action pairs, and used oracle data to train neural network to predict actions given a configuration.</p>
 					</div>
 				</div>
 				<div class="row"> <!--New Row-->
@@ -149,10 +177,11 @@ complex materials, environment lighting, and depth of field effects.  </p>
 						<a href="https://inst.eecs.berkeley.edu/~cs61b/fa18/materials/proj/proj2/index.html" target="_blank"><img class="project-img img-responsive" src="images/amazons.png" alt="KeyCode"></a>
 						<p class="project-descrip">A simulated Argentinian strategy game, including minimax AI bots that can force wins within a dozen moves. </p>
 					</div>
-				    <div class="column">
-							<h4 class="project-title">Ghostbusters</h4>
-							<a href="https://inst.eecs.berkeley.edu/~cs188/sp19/project4.html" target="_blank"><img class="project-img img-responsive" src="images/ghostbusters.png" alt="IronSnake"></a>
-							<p class="project-descrip">A Pacman game where agents use sensors to locate and eat invisible ghosts. Advances from locating single, stationary ghosts to hunting packs of multiple moving ghosts with ruthless efficiency.</p>
+					<div class="column">
+						<h4 class="project-title">Rasterizer</h4>
+						<a href="http://randyfan.com/Rasterizer/" target="_blank"><img class="project-img img-responsive" src="images/rasterizer.png" alt="IronSnake"></a>
+						<p class="project-descrip">A simple rasterizer that includes features such as supersampling, hierarchical transforms, and texture mapping with antialiasing.
+					It is a fully functional vector graphics renderer that can take in modified SVG (Scalable Vector Graphics) files.</p>
 					</div>
 				</div>
 			</section>
